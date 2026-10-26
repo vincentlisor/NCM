@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#9d3d62" />
+  <title>NCM 107 Reviewer | Maternal &amp; Child Nursing</title>
+  <meta name="description" content="Interactive reviewer for NCM 107: growth and development from toddler to adolescent, play, and pain assessment." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%239d3d62'/%3E%3Cpath d='M32 14v36M14 32h36' stroke='white' stroke-width='9' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">+</span>
+        <div>
+          <div class="brand-title">NCM 107 Reviewer</div>
+          <div class="brand-sub">Maternal &amp; Child Nursing</div>
+        </div>
+      </div>
+      <button id="themeToggle" class="icon-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <span aria-hidden="true" id="themeIcon">&#9790;</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- SETUP SCREEN -->
+    <section id="screen-setup" class="screen">
+      <div class="hero card">
+        <p class="eyebrow">Growth &amp; Development Review</p>
+        <h1>Toddler to Adolescent, Play &amp; Pain Assessment</h1>
+        <p class="lead">Practice with multiple choice, identification and enumeration questions based strictly on your class notes. After each answer, the correct answer turns green, wrong answers turn red, and the explanation from the notes is shown.</p>
+        <div class="stats">
+          <div class="stat"><span id="statTotal">0</span><small>Questions</small></div>
+          <div class="stat"><span id="statTopics">0</span><small>Topics</small></div>
+          <div class="stat"><span id="statBest">&ndash;</span><small>Best score</small></div>
+        </div>
+      </div>
+
+      <div class="card settings">
+        <h2>Build your review session</h2>
+
+        <fieldset>
+          <legend>Topics</legend>
+          <div id="topicChips" class="chips"></div>
+          <div class="link-row">
+            <button type="button" class="link-btn" id="selAllTopics">Select all</button>
+            <button type="button" class="link-btn" id="selNoTopics">Clear</button>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Question types</legend>
+          <div id="typeChips" class="chips"></div>
+        </fieldset>
+
+        <div class="row">
+          <label class="field">
+            <span>Number of questions</span>
+            <select id="countSelect"></select>
+          </label>
+          <label class="switch">
+            <input type="checkbox" id="shuffleToggle" checked />
+            <span class="slider" aria-hidden="true"></span>
+            <span>Shuffle questions</span>
+          </label>
+        </div>
+
+        <p id="availableMsg" class="muted" aria-live="polite"></p>
+        <button id="btnStart" type="button" class="btn primary large">Start reviewing</button>
+      </div>
+    </section>
+
+    <!-- QUIZ SCREEN -->
+    <section id="screen-quiz" class="screen" hidden>
+      <div class="quiz-head">
+        <div class="quiz-meta">
+          <span id="qCounter" class="counter">Question 1 of 10</span>
+          <span id="liveScore" class="score-pill">Score: 0</span>
+        </div>
+        <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressWrap">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+      </div>
+
+      <article class="card question-card">
+        <div class="badges">
+          <span id="topicBadge" class="badge topic"></span>
+          <span id="typeBadge" class="badge type"></span>
+        </div>
+        <h2 id="qText" class="q-text"></h2>
+        <p id="qHint" class="hint"></p>
+
+        <div id="answerArea" class="answer-area"></div>
+
+        <div id="feedback" class="feedback" hidden aria-live="polite"></div>
+
+        <div class="actions">
+          <button id="btnQuit" type="button" class="btn ghost">Quit</button>
+          <div class="actions-right">
+            <button id="btnSkip" type="button" class="btn secondary" hidden>Show answer</button>
+            <button id="btnCheck" type="button" class="btn primary" hidden>Check answer</button>
+            <button id="btnNext" type="button" class="btn primary" hidden>Next question &rarr;</button>
+          </div>
+        </div>
+      </article>
+      <p class="kbd-tip muted">Tip: press <kbd>1</kbd>&ndash;<kbd>4</kbd> to choose an option and <kbd>Enter</kbd> to check or continue.</p>
+    </section>
+
+    <!-- RESULT SCREEN -->
+    <section id="screen-result" class="screen" hidden>
+      <div class="card result-card">
+        <div id="ring" class="ring" style="--p:0">
+          <div class="ring-inner">
+            <strong id="ringPct">0%</strong>
+            <small id="ringText">0 / 0</small>
+          </div>
+        </div>
+        <div class="result-copy">
+          <p class="eyebrow">Session complete</p>
+          <h2 id="resultTitle">Nice work!</h2>
+          <p id="resultMsg" class="lead"></p>
+          <div class="btn-row">
+            <button id="btnRetryMissed" type="button" class="btn primary">Retry missed questions</button>
+            <button id="btnNew" type="button" class="btn secondary">New session</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Performance by topic</h3>
+        <div id="topicBreakdown" class="breakdown"></div>
+      </div>
+
+      <div class="card">
+        <div class="review-head">
+          <h3 id="reviewTitle">Questions to review</h3>
+          <button id="btnToggleReview" type="button" class="btn ghost small">Show all questions</button>
+        </div>
+        <div id="reviewList" class="review-list"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Based on the NCM 107 class notes (Toddler, Preschool, School-Age, Adolescent, Play and Pain Assessment). For study use only.</p>
+  </footer>
+
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

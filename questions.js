@@ -1,0 +1,208 @@
+/* NCM 107 Reviewer - question bank
+   Every question and answer is taken from the class notes
+   "Maternal NCM 107 - Toddler to Adolescent, Play, Pain Assessment".
+
+   Helpers:
+   mc(question, correctAnswer, [3 wrong answers], explanation)
+   idn(question, [accepted answers], explanation, displayAnswer?)
+   en(question, [[display, keyword, keyword...], ...], explanation, needCount?)
+*/
+const QUESTIONS = (() => {
+  const Q = [];
+  let topic = "";
+  let pg = "";
+  const mc = (q, a, w, e) => Q.push({ type: "mc", topic, page: pg, q, a, w, e });
+  const idn = (q, a, e, show) => Q.push({ type: "id", topic, page: pg, q, a, e, show: show || a[0] });
+  const en = (q, items, e, need) =>
+    Q.push({
+      type: "enum", topic, page: pg, q,
+      items: items.map((x) => ({ show: x[0], k: x.slice(1) })),
+      e, need: need || items.length,
+    });
+
+  /* ===================== TODDLER ===================== */
+  topic = "Toddler";
+  pg = "p.1";
+  mc("What is the age range of the toddler period?", "12 months to 3 years", ["6 months to 1 year", "3 to 5 years", "6 to 12 years"], "Toddler = 12 months to 3 years.");
+  mc("The toddler period is described as a period of ____.", "Slow growth", ["Rapid growth", "Pubertal growth spurt", "No growth at all"], "The notes describe the toddler years as a period of slow growth.");
+  mc("Approximately how much weight does a toddler gain during the toddler period?", "About 11 lb (5 kg)", ["About 2 lb (1 kg)", "About 25 lb (11 kg)", "About 40 lb (18 kg)"], "Weight gain is approximately 11 lb (5 kg) during this time.");
+  mc("A toddler gains only about how much weight per year?", "5-6 lb (2.5 kg)", ["1-2 lb (0.5 kg)", "10-12 lb (5 kg)", "15-20 lb (8 kg)"], "The toddler gains only 5-6 lb (2.5 kg) a year.");
+  mc("How much height does a toddler grow during the toddler period?", "20.3 cm (8 inches)", ["5 cm (2 inches)", "40 cm (16 inches)", "60 cm (24 inches)"], "Height grows about 20.3 cm (8 inches).");
+  mc("Why does a toddler have a prominent abdomen?", "The abdominal muscles are not yet strong enough to support the abdominal contents", ["The toddler is always overfed", "The spine curves backward at the sacral area", "The ribs have not yet formed"], "Although toddlers walk well, their abdominal muscles are not yet strong enough to support the abdominal contents.");
+  idn("What is the term for the forward curve of the spine at the sacral area seen in toddlers?", ["lordosis"], "Body contour: forward curve at the spine at the sacral area (lordosis).");
+  mc("Primary dentition of 20 teeth is completed by what age?", "2 1/2 years", ["1 year", "1 1/2 years", "4 years"], "Primary dentition of 20 teeth is completed by 2 1/2 years.");
+  idn("According to Freud, what psychosexual stage is the toddler in?", ["anal stage", "anal"], "Toddlers develop sphincter control for bowel and bladder - Freud's ANAL STAGE.", "Anal stage");
+  mc("At what age does a toddler walk alone?", "18 months", ["6 months", "9 months", "3 years"], "Walks alone by 18 months.");
+  mc("A toddler runs fairly well by what age?", "2 years", ["12 months", "18 months", "3 years"], "Runs fairly well by 2 years.");
+  mc("A toddler jumps from a chair or step by what age?", "2 1/2 years", ["12 months", "18 months", "4 years"], "Jumps from chair or step by 2 1/2 years.");
+  mc("A toddler balances on one foot momentarily by what age?", "2 1/2 years", ["1 year", "18 months", "5 years"], "Balances on one foot momentarily by 2 1/2 years.");
+  mc("At what age does a toddler ride a tricycle?", "3 years", ["12 months", "18 months", "5 years"], "Rides tricycle by 3 years.");
+  mc("Which statement describes the psychosocial development of a toddler?", "Increased independence, better able to tolerate separation, and less likely to fear strangers", ["Clings to the caregiver and fears strangers more than before", "Cannot tolerate any separation from the primary caregiver", "Is completely independent in all self-care activities"], "Toddlers show increased independence, tolerate separation from the primary caregiver better, and are less likely to fear strangers.");
+  idn("At what age is a toddler able to help with dressing and undressing?", ["18 months", "1 1/2 years", "1.5 years", "one and a half years"], "Able to help with dressing/undressing at 18 months; dresses itself at 24 months.", "18 months");
+  mc("Temper tantrums (saying no) should decrease by what age?", "2 1/2 years", ["12 months", "18 months", "4 years"], "Temper tantrums may occur during this period but should decrease by 2 1/2 years.");
+  mc("A toddler's vocabulary increases from about 10-20 words to over how many words by 3 years?", "900 words", ["100 words", "300 words", "2,000 words"], "Vocabulary increases from about 10-20 words to over 900 by 3 years.");
+  mc("A toddler shows proper use of pronouns (I, me, you) by what age?", "3 years", ["12 months", "18 months", "5 years"], "Shows proper use of pronouns (I, me, you) by 3 years.");
+  mc("A toddler begins to use short sentences at what age?", "18 months to 2 years", ["6 to 9 months", "3 to 4 years", "5 years"], "Begins to use short sentences at 18 months to 2 years.");
+  mc("A toddler can remember and repeat 3 numbers by what age?", "3 years", ["1 year", "18 months", "5 years"], "Can remember and repeat 3 numbers by 3 years.");
+  mc("A toddler gives his or her full name by what age?", "3 years", ["12 months", "18 months", "24 months"], "Knows own name by 12 months; gives first name by 24 months; gives full name by 3 years.");
+  idn("What is the term for being aware that objects exist even if they are not in view?", ["object permanence"], "Toddlers achieve object permanence - awareness that objects exist even if not in view.");
+  mc("A toddler believes that his own feelings affect events (e.g., anger causes rain). What kind of thinking is this?", "Magical thinking", ["Abstract thinking", "Formal operational thought", "Moral realism"], "Toddlers use \"magical\" thinking and believe their own feelings affect events.");
+  mc("What is the purpose of ritualistic behavior in toddlers?", "To repeat skills in order to master them and decrease anxiety", ["To manipulate their parents", "To avoid eating", "To express anger"], "Toddlers use ritualistic behavior - repeating skills to master them and to decrease anxiety.");
+  idn("What do you call a blanket or stuffed animal that a toddler may become dependent on?", ["transitional object", "transitional objects", "transitional"], "A toddler may develop dependency on a \"transitional object\" such as a blanket or stuffed animal.", "Transitional object");
+  mc("What is the caloric requirement of a toddler?", "Approximately 100 calories/kg/day", ["Approximately 50 calories/kg/day", "Approximately 200 calories/kg/day", "Approximately 300 calories/kg/day"], "Caloric requirement is approximately 100 calories/kg/day.");
+  en("Enumerate the three nutrients for which a toddler has an increased need.", [["Calcium", "calcium"], ["Iron", "iron"], ["Phosphorus", "phosph"]], "Toddlers have an increased need for calcium, iron and phosphorus.");
+  mc("How much milk does a toddler need per day?", "16-24 oz", ["4-8 oz", "30-40 oz", "50 oz"], "Needs 16-24 oz milk/day.");
+  mc("What happens to the toddler's appetite?", "It decreases", ["It increases", "It doubles", "It cannot be assessed"], "Appetite decreases in the toddler period.");
+
+  pg = "p.2";
+  idn("What is Erikson's psychosocial task for the toddler?", ["autonomy vs shame and doubt", "autonomy versus shame and doubt", "autonomy"], "Erik Erikson: autonomy vs shame and doubt.", "Autonomy vs shame and doubt");
+  mc("At what age is the initial dental examination done?", "3 years", ["6 months", "1 year", "6 years"], "Initial dental examination at 3 years.");
+  mc("Why should large chunks of meat, particularly hotdogs, be avoided in toddlers?", "Risk of choking", ["They are too high in fat", "They cause allergies", "They are hard to digest"], "Safety: avoid large chunks of meat, particularly hotdogs, because the child may choke.");
+  mc("Children sit in forward-facing car seats only after the age is greater than ____ and weight is greater than ____.", "1 year and 20 lb", ["6 months and 10 lb", "2 years and 40 lb", "3 years and 50 lb"], "Forward-facing car seats only after age greater than 1 year and weight greater than 20 lb.");
+  mc("Where should all car seats be placed in the car?", "In the rear seat", ["In the front passenger seat", "Beside the driver", "In the cargo area"], "All car seats are placed in the rear seat. No car seat should be placed in front of the passenger side air bag.");
+  en("Enumerate any 4 toys/equipment suggested to provide for the toddler's increased locomotive skills.", [["Push toys", "push"], ["Rocking horse", "rocking", "horse"], ["Riding toys / tricycles", "riding", "tricycle"], ["Swing", "swing"], ["Slide", "slide"]], "Provide toys for increased locomotive skills: push toys, rocking horse, riding toys, or tricycles; swing and slide.", 4);
+  en("Enumerate 4 toys that develop a toddler's fine motor skills and problem-solving abilities.", [["Puzzles", "puzzle"], ["Blocks", "block"], ["Finger paints", "finger", "paint"], ["Crayons", "crayon"]], "Toys to develop fine motor skills and problem-solving abilities: puzzles, blocks, finger paints, crayons.");
+  mc("What is an important developmental task related to separation in toddlers?", "Learning to tolerate and master brief periods of separation", ["Never being separated from the primary caregiver", "Learning to fear strangers", "Learning to read"], "Learning to tolerate and master brief periods of separation is an important developmental task.");
+  mc("What helps a toddler overcome the fear of separation?", "Increasing understanding of object permanence", ["Rapid weight gain", "Parallel play", "Frequent tantrums"], "Increasing understanding of object permanence helps a toddler overcome this fear.");
+  en("Enumerate the three stages of separation anxiety.", [["Protest", "protest"], ["Despair", "despair"], ["Denial", "denial"]], "Separation anxiety: PROTEST, DESPAIR, DENIAL.");
+  idn("Which stage of separation anxiety: the child screams and cries when mother leaves and attempts to call her back?", ["protest"], "PROTEST: screams and cries when mother leaves, attempts to call her back.", "Protest");
+  idn("Which stage of separation anxiety: the child whimpers, clutches transitional objects, curls up in bed, decreases activity and rocks?", ["despair"], "DESPAIR: whimpers, clutches transitional objects, curls up in bed, decreases activity, rocking.", "Despair");
+  idn("Which stage of separation anxiety: the child resumes normal activity but does not form psychosocial relationships, and ignores the mother when she returns?", ["denial"], "DENIAL: resumes normal activity but does not form psychosocial relationships when mother returns; child ignores her.", "Denial");
+  mc("For a toddler, bedtime may represent ____.", "Desertion", ["Punishment", "Independence", "A reward"], "Bedtime may represent desertion.");
+  en("Enumerate the four parental concerns associated with the toddler period.", [["Toilet training", "toilet"], ["Ritualistic behavior", "ritual"], ["Negativism", "negativ"], ["Temper tantrums", "tantrum"]], "Parental concerns: toilet training, ritualistic behavior, negativism, temper tantrums.");
+  mc("Control of the rectal and urethral sphincter, needed for toilet training, is usually achieved ____.", "By the time the toddler walks well", ["At 6 months", "Only after 5 years", "When the first tooth erupts"], "They must have control of the rectal and urethral sphincter, usually achieved by the time they walk well.");
+  en("Enumerate the three things a toddler must have to be ready for toilet training.", [["Control of the rectal and urethral sphincter", "sphincter", "rectal", "urethral"], ["Cognitive understanding of what it means to hold urine and stools", "cognitive", "understand"], ["Desire to delay immediate gratification", "delay", "gratification"]], "Toilet training readiness: sphincter control, cognitive understanding of holding urine and stools, and a desire to delay immediate gratification for a more socially accepted action.");
+  mc("Negativism in toddlers is best described as ____.", "A positive change in development as toddlers establish identities as separate individuals", ["A sign of mental illness", "An abnormal phenomenon that needs treatment", "A sign of poor parenting"], "Negativism is not a normal \"problem\" but a positive change in development - toddlers establish identity as separate individuals.");
+  mc("Why do temper tantrums occur in toddlers?", "They do not have enough vocabulary to express their feelings in a more acceptable way", ["They want to hurt their parents", "They are always tired", "They have object permanence"], "Temper tantrums occur because toddlers do not have enough vocabulary to express their feelings in a more acceptable way.");
+
+  /* ===================== PRESCHOOL ===================== */
+  topic = "Preschool";
+  pg = "p.3";
+  mc("What is the age range of the preschool period?", "3-5 years", ["12 months-3 years", "6-12 years", "13-19 years"], "Preschool = 3-5 years.");
+  mc("How much weight does a preschooler gain per year?", "4 lb (1.8-2.7 kg)", ["11 lb (5 kg)", "About 1 lb (0.5 kg)", "15 lb (7 kg)"], "Weight increases 4 lb (1.8-2.7 kg) a year.");
+  mc("How much height does a preschooler gain per year?", "2-3.5 inches (6-8 cm)", ["Less than 1 inch (2 cm)", "5-6 inches (13-15 cm)", "8 inches (20 cm)"], "Height increases 2-3.5 inches (6-8 cm).");
+  mc("Birth length is doubled by what age?", "4 years", ["1 year", "2 years", "6 years"], "Birth length doubled by 4 years.");
+  mc("What happens to the vital signs of a preschooler?", "They decrease slightly", ["They increase greatly", "They are exactly the same as an infant's", "They fluctuate widely"], "Vital signs decrease slightly during the preschool period.");
+  mc("A preschooler walks up stairs using alternate feet by what age?", "3 years", ["18 months", "4 years", "5 years"], "Walks up stairs using alternate feet by 3 years.");
+  mc("A preschooler walks downstairs using alternate feet by what age?", "4 years", ["18 months", "3 years", "6 years"], "Walks downstairs using alternate feet by 4 years.");
+  mc("At what age does a preschooler hop on one foot?", "4 years", ["2 years", "3 years", "6 years"], "Hops on 1 foot by 4 years.");
+  mc("At what age does a preschooler skip and hop on alternate feet?", "5 years", ["2 years", "3 years", "4 years"], "Skips and hops on alternate feet by 5 years.");
+  mc("A preschooler balances on one foot with eyes closed by what age?", "5 years", ["2 years", "3 years", "4 years"], "Balances on one foot with eyes closed by 5 years.");
+  mc("A preschooler builds a tower of blocks by what age?", "3 years", ["12 months", "5 years", "6 years"], "Builds a tower of blocks by 3 years.");
+  mc("At 3 years, a preschooler copies a ____ and may add facial features.", "Circle", ["Square", "Diamond", "Triangle"], "Copies circle, may add facial features by 3 years.");
+  mc("At 4 years, a preschooler copies a ____ and traces a ____.", "Square; diamond", ["Circle; square", "Triangle; diamond", "Circle; triangle"], "Copies a square, traces a diamond by 4 years.");
+  mc("At 5 years, a preschooler copies a diamond and triangle and ____.", "Prints letters and numbers", ["Only scribbles", "Draws a circle for the first time", "Cannot hold a pencil"], "Copies a diamond and triangle, prints letters and numbers by 5 years.");
+  mc("A preschooler handles scissors well by what age?", "5 years", ["2 years", "3 years", "4 years"], "Handle scissors well by 5 years.");
+  idn("What is Erikson's psychosocial task for the preschooler?", ["initiative vs guilt", "initiative versus guilt", "initiative"], "Psychosocial task (preschool): Initiative vs Guilt.", "Initiative vs guilt");
+  mc("Aggressiveness and impatience in preschoolers peak at what age?", "4 years", ["2 years", "3 years", "6 years"], "Aggressiveness and impatience peak at 4 years then abate; by 5 years the child is eager to please.");
+  mc("Gender-specific behavior becomes evident by what age?", "5 years", ["1 year", "2 years", "3 years"], "Gender-specific behavior is evident by 5 years.");
+  mc("Cognitively, a preschooler ____.", "Focuses on one idea at a time and cannot look at the entire perspective", ["Looks at the entire perspective", "Thinks abstractly", "Understands conservation and class inclusion"], "Preschoolers focus on one idea at a time - they cannot look at the entire perspective.");
+  idn("What do you call perceiving that one's thoughts and needs are better or more important than those of others?", ["egocentrism", "egocentricity", "egocentricism", "egocentric"], "Egocentricism - perceiving that one's thoughts and needs are better or more important than those of others.", "Egocentrism");
+  mc("Children weighing 20-40 lb and younger than age 4 should ride in a ____.", "Car safety seat", ["Booster seat", "Regular seat belt only", "Front passenger seat"], "Car safety: children 20-40 lb and younger than age 4 should ride in a car safety seat.");
+  mc("Children over 40 lb and between the ages of 4 and 8 should have a ____.", "Booster seat", ["Rear-facing infant seat", "No restraint", "Front passenger seat"], "Children over 40 lb and between ages 4 and 8 should have a booster seat.");
+  mc("Republic Act 10354 refers to the ____.", "Responsible Parenthood Act", ["Anti-Child Abuse Act", "Expanded Breastfeeding Promotion Act", "Newborn Screening Act"], "Per the notes: Republic Act (10354) - Responsible Parenthood Act.");
+  mc("Preschoolers enjoy which kind of play?", "Imitative and dramatic play", ["Solitary play only", "Competitive team sports with rules", "Quiet board games only"], "Enjoys imitative and dramatic play - e.g., dressing up, dollhouses, doctor and nurse's kit.");
+  mc("Which is common during the preschool period?", "Imaginary playmates", ["Peer pressure and cliques", "Fear of strangers", "Formal operational thought"], "Imaginary playmates are common during this period.");
+
+  pg = "p.4";
+  mc("During which period is the greatest number of imagined and real fears of childhood experienced?", "Preschool period", ["Infancy", "School-age period", "Adolescence"], "The greatest number of imagined and real fears of childhood occurs during the preschool period.");
+  idn("What do you call the strong emotional attachment a preschool boy demonstrates toward his mother?", ["oedipus complex", "oedipus"], "Oedipus complex - the strong emotional attachment of a preschool boy toward his mother (\"mama's boy\").", "Oedipus complex");
+  idn("What do you call the attachment of a preschool girl to her father?", ["electra complex", "electra"], "Electra complex - the attachment of a preschool girl to her father (\"daddy's girl\").", "Electra complex");
+  mc("Stuttering or stammering results from failure to master ____.", "Sensorimotor integration", ["Object permanence", "Moral realism", "Conservation"], "Speech problem: failure to master sensorimotor integration results in stuttering or stammering.");
+  mc("Stuttering or stammering affects ____.", "Boys more frequently than girls", ["Girls more frequently than boys", "Boys and girls equally", "Only girls"], "Stuttering affects boys more frequently than girls and resolves during childhood.");
+  mc("Masturbation or self-stimulation of the genitalia in preschoolers is ____.", "Part of sexual curiosity and exploration", ["A sign of severe mental illness", "Always a sign of abuse", "A form of aggression"], "It is a part of sexual curiosity and exploration.");
+
+  /* ===================== SCHOOL-AGE ===================== */
+  topic = "School-Age";
+  pg = "p.5";
+  mc("What is the age range of the school-age period?", "6-12 years old", ["3-5 years old", "12 months-3 years old", "13-19 years old"], "School-age = 6-12 years old.");
+  mc("At age 9, how do boys and girls compare in size?", "Both sexes are the same size", ["Boys are much bigger", "Girls are much bigger", "Girls are much smaller"], "At age 9, both sexes are the same size.");
+  mc("By age 12, ____.", "Girls are bigger than boys", ["Boys are bigger than girls", "Both are exactly the same size", "Boys have stopped growing"], "At age 12, girls are bigger than boys.");
+  mc("At about what age does a child lose the first primary tooth?", "6 years", ["2 years", "3 years", "10 years"], "Loses first primary tooth at about 6 years.");
+  mc("Bone growth is faster than muscle and ligament development. The school-age child is therefore ____.", "Prone to bone fractures", ["Immune to fractures", "Too weak to run", "Prone to obesity only"], "Bone growth is faster than muscles and ligament development - the child is very limber but susceptible to bone fractures.");
+  mc("Which statement is true about the vision of a school-age child?", "Vision is completely mature", ["Vision is still developing", "Vision is blurred until age 12", "Only color vision is mature"], "Vision is completely mature.");
+  mc("School occupies about how much of a school-age child's waking hours?", "Half", ["A quarter", "All", "Only a few minutes"], "School occupies half of waking hours and has cognitive and social impact.");
+  mc("Why may parents lose some authority in the school-age period?", "Teachers may be a parent substitute", ["Children stop going to school", "Children become adolescents", "Parents stop caring"], "Teachers may be a parent substitute, causing parents to lose some authority.");
+  idn("Before age 9, things are seen as black or white, right or wrong, and there is a strict superego and rule dominance. What is this called?", ["moral realism"], "Before age 9, MORAL REALISM predominates; after age 9, autonomous morality develops.", "Moral realism");
+  mc("After age 9, a child develops ____.", "Autonomous morality - recognizes differing points of view and sees \"gray\" areas", ["Moral realism - things are black or white", "Magical thinking", "Egocentric morality only"], "After age 9 autonomous morality develops, recognizes differing points of view, and sees \"gray\" areas.");
+  idn("What is Erikson's psychosocial task for the school-age child?", ["industry vs inferiority", "industry versus inferiority", "industry"], "School-age: period of industry (industry vs inferiority).", "Industry vs inferiority");
+  mc("A child in the period of industry ____.", "Likes to accomplish or produce and develops confidence", ["Likes to avoid all challenges", "Is concerned only with play", "Rejects exploration and adventure"], "Is interested in exploration and adventure; likes to accomplish or produce; develops confidence.");
+  idn("What is the ability to project oneself into other people's situations and see the world from their viewpoint?", ["decentering", "decentration"], "DECENTERING - the ability to project one's self into other people's situations rather than focusing only on one's own view.", "Decentering");
+  idn("What is the ability to adapt thought processes to fit what is perceived, such as understanding there can be more than one reason for other people's actions?", ["accommodation", "accomodation"], "ACCOMMODATION - the ability to adapt thought processes to fit what is perceived.", "Accommodation");
+  idn("What is the ability to appreciate that a change in shape does not necessarily mean a change in quantity?", ["conservation"], "CONSERVATION - the ability to appreciate that a change in shape does not necessarily mean a change in (quantity).", "Conservation");
+  idn("What is the ability to understand that objects can belong to more than one classification?", ["class inclusion"], "CLASS INCLUSION - the ability to understand that objects can belong to more than one classification.", "Class inclusion");
+
+  pg = "p.6";
+  mc("Which nutrition problem may develop in school-age children?", "\"Junk food\" with excess sugar, starches and fat, putting them at risk for obesity", ["Complete lack of appetite", "Excess calcium intake", "Vitamin overdose"], "\"Junk food\" may become a problem (excess sugar, starches and fat); obesity is at risk; nutrition education should be integrated in the school program.");
+  mc("What is the most common cause of severe injury in school-age children?", "Motor vehicle accidents", ["Drowning", "Burns", "Poisoning"], "Motor vehicle accidents are the most common cause of severe injury; sports injuries also occur.");
+  mc("In school-age play, knowing the rules provides ____.", "A sense of belonging", ["Freedom from peers", "Solitary enjoyment", "Fear of competition"], "Rules and ritual dominate play; individuality is not tolerated by peers; knowing rules provides a sense of belonging.");
+  mc("What does team play (games or sports) help the school-age child learn?", "The value of individual skills and team accomplishment, and the nature of competition", ["How to avoid peers", "How to play alone", "Nothing about competition"], "Team play helps learn the value of individual skills and team accomplishment and the nature of competition.");
+  en("Enumerate any 4 quiet games and activities of school-age children.", [["Board games", "board"], ["Collections", "collection"], ["Book", "book"], ["Television", "television", "tv"], ["Painting", "paint"]], "Quiet games and activities: board games, collections, book, television, painting.", 4);
+  en("Enumerate the three athletic activities of school-age children.", [["Swimming", "swim"], ["Bicycling", "bicycl", "bike", "cycling"], ["Skating", "skat"]], "Athletic activities: swimming, bicycling, skating.");
+  en("Enumerate 4 fears of school-age children.", [["Death", "death", "die"], ["Disease or bodily injury", "disease", "injury"], ["Punishment", "punish"], ["School phobia", "school", "phobia"]], "School-age fears are more realistic: death, disease or bodily injury, punishment, school phobia.");
+  mc("School phobia in school-age children may result in ____.", "Psychosomatic illness", ["Increased appetite", "Faster growth", "Object permanence"], "School phobia may develop, resulting in psychosomatic illness.");
+  en("Enumerate any 5 concerns and problems of the school-age child.", [["School refusal or phobia", "refusal", "school", "phobia"], ["Homeschooling", "home"], ["Sex education", "sex"], ["Stealing", "steal"], ["Violence or terrorism", "violence", "terror"], ["Bullying", "bully"], ["Recreational drug use", "drug"], ["Common health problems", "health"]], "Concerns: school refusal or phobia, homeschooling, sex education, stealing, violence or terrorism, bullying, recreational drug use, common health problems.", 5);
+  en("Enumerate the two common health problems of the school-age child.", [["Dental caries", "caries", "carries", "dental"], ["Malocclusion", "occlusion"]], "Common health problems: dental caries and malocclusion.");
+
+  /* ===================== ADOLESCENT ===================== */
+  topic = "Adolescent";
+  pg = "p.7";
+  mc("What is the age range of the adolescent period?", "13-19 years old", ["6-12 years old", "3-5 years old", "20-25 years old"], "Adolescent = 13-19 years old.");
+  mc("The pubertal growth spurt in females occurs between what ages?", "10 and 14 years", ["6 and 8 years", "12 and 16 years", "16 and 20 years"], "Females: pubertal growth spurt between 10 and 14.");
+  mc("What is the weight gain of adolescent females?", "7-25 kg (15 to 55 lb); mean 17.5 kg (38 lb)", ["1-5 kg", "7-30 kg (16-65 lb); mean 23.7 kg", "40-60 kg"], "Females: weight gain 7-25 kg (15 to 55 lb); mean 17.5 kg (38 lb).");
+  mc("The pubertal growth spurt in males occurs between what ages?", "12 and 16 years", ["6 and 8 years", "10 and 14 years", "17 and 21 years"], "Males: pubertal growth spurt between 12-16 years.");
+  mc("What is the weight gain of adolescent males?", "7-30 kg (16-65 lb); mean 23.7 kg (52 lb)", ["7-25 kg; mean 17.5 kg", "1-5 kg", "40-60 kg"], "Males: weight gain 7 to 30 kg (16-65 lb); mean 23.7 kg (52 lb).");
+  mc("Approximately 95% of mature height is achieved by ____.", "The onset of menarche or skeletal age of 13 years", ["Age 6", "Age 25", "The start of school"], "Approximately 95% of mature height is achieved by the onset of menarche or skeletal age of 13 years.");
+  idn("What is the cognitive stage of the adolescent, characterized by abstract thinking?", ["formal operational thought", "formal operational", "formal operations"], "Cognitive development: FORMAL OPERATIONAL THOUGHT - abstract thinking.", "Formal operational thought");
+  mc("An adolescent can comprehend ____.", "Satire and double meanings", ["Only literal meanings", "Only concrete objects", "Nothing abstract"], "Can comprehend satire and double meanings; can say one thing and mean another.");
+  mc("Which perception skill is developed in adolescents?", "Understanding that the whole is more than the sum of its parts", ["Only appreciating representational art", "A very short attention span", "Learning only through trial and error"], "Perception: appreciates nonrepresentational art; understands that the whole is more than the sum of its parts; longer attention span; learns through inference and intuition.");
+  mc("What is one of the strongest motivating forces of adolescent behavior?", "Peer-group identity", ["Parental rules", "School grades", "Television"], "Peer-group identity is one of the strongest motivating forces of behavior.");
+  mc("Cliques in adolescents are usually based on ____.", "Common denominators such as race and social class", ["Height and weight", "Birth order", "Number of siblings"], "Clique formation is usually based on common denominators such as race, social class.");
+  mc("What is the major goal in adolescent interpersonal relationships?", "To learn to form a close intimate relationship with the opposite sex", ["To avoid all friendships", "To join the family business", "To remain dependent on parents"], "Major goal is to learn to form a close intimate relationship with the opposite sex.");
+  mc("By 15 or 16 years of age, adolescents feel that they should be ____.", "Treated as adults", ["Treated as toddlers", "Closely supervised at all times", "Separated from peers"], "By 15 or 16, adolescents feel they should be treated as adults.");
+  idn("What term describes an adolescent who wants freedom but is not happy about the corresponding responsibilities and yearns for carefree days of childhood?", ["ambivalence"], "AMBIVALENCE - the adolescent wants freedom but is not happy about corresponding responsibilities.", "Ambivalence");
+  en("Enumerate the 2 common health problems of adolescents.", [["Pimples", "pimple", "acne"], ["Body posture", "posture", "kyphosis", "ketosis", "lordosis"]], "Common health problems: pimples; body posture (e.g., lordosis).");
+  en("Enumerate the 3 concerns regarding sexuality and sexual activity in adolescents.", [["Unplanned pregnancies", "pregnan"], ["STIs (Sexually Transmitted Infections)", "sti", "sexually transmitted"], ["Stalking", "stalk"]], "Concerns: unplanned pregnancies, STIs (Sexually Transmitted Infections), stalking.");
+
+  /* ===================== PLAY ===================== */
+  topic = "Play";
+  pg = "p.8";
+  idn("What do you call the activity that helps children learn, explore, develop skills, express feelings, and interact with others?", ["play"], "Play is an activity that helps children learn, explore, develop skills, express feelings, and interact with others.", "Play");
+  en("Enumerate the 5 functions of play.", [["Educational", "educat"], ["Recreational", "recreat"], ["Physical development", "physical"], ["Social and emotional", "social", "emotional"], ["Therapeutic", "therapeutic", "therapy"]], "Functions of play: educational, recreational, physical development, social and emotional, therapeutic.");
+  mc("Which function of play helps children cope with stress, fear, anxiety and painful experiences?", "Therapeutic", ["Educational", "Recreational", "Physical development"], "Therapeutic - helps children cope with stress, fear, anxiety and painful experiences.");
+  en("Enumerate the 7 types of play.", [["Solitary play", "solitary"], ["Onlooker play", "onlooker"], ["Parallel play", "parallel"], ["Associative play", "associative"], ["Cooperative play", "cooperative"], ["Unoccupied play", "unoccupied"], ["Independent play", "independent"]], "Types of play: solitary, onlooker, parallel, associative, cooperative, unoccupied, independent.");
+  idn("What type of play is predominant in infants?", ["solitary play", "solitary"], "Solitary play - infant.", "Solitary play");
+  idn("What type of play is predominant in toddlers?", ["parallel play", "parallel"], "Parallel play - toddlers: the child plays alongside other children but not with them.", "Parallel play");
+  idn("What type of play is predominant in preschoolers?", ["associative play", "associative"], "Associative play - preschoolers: children play together and share toys, but there is no organized goal.", "Associative play");
+  idn("What type of play is predominant in school-age children?", ["cooperative play", "cooperative"], "Cooperative play - school-age children: they play together with rules, shared goals and assigned roles.", "Cooperative play");
+  mc("In ____ play, the child watches other children play but does not join them.", "Onlooker", ["Solitary", "Cooperative", "Associative"], "Onlooker play - the child watches other children play but does not join them.");
+  mc("In ____ play, a child makes random movements and explores the surroundings.", "Unoccupied", ["Independent", "Cooperative", "Onlooker"], "Unoccupied play - a child makes random movements and explores the surroundings.");
+  mc("In ____ play, children engage in activities independently, according to their abilities and interests.", "Independent", ["Unoccupied", "Cooperative", "Associative"], "Independent play - children engage in activities independently, according to their abilities and interests.");
+  en("Enumerate the 3 criteria for judging the suitability of toys.", [["Safety", "safe"], ["Compatibility", "compatib"], ["Usefulness", "useful"]], "Criteria: safety; compatibility (child's age, level of development, experience); usefulness.");
+  mc("How is play important in Maternal and Child Nursing?", "It reduces fear and anxiety during hospitalization", ["It replaces medical treatment", "It increases fear of procedures", "It prevents communication"], "Importance of play in MCN: reduces fear and anxiety during hospitalization; helps children understand procedures through play; etc.");
+  mc("How does play help the nurse?", "It helps nurses assess a child's developmental level", ["It lets the nurse skip assessment", "It replaces the parents", "It only keeps the child busy"], "Play helps nurses assess a child's developmental level.");
+
+  pg = "p.9";
+  en("Enumerate the 3 dangers to consider about toys during toddlerhood.", [["Breaking a toy through exploration and ingesting small pieces", "break", "small piece", "ingest", "swallow", "choke"], ["Ingesting lead from lead-based paint on toys", "lead", "paint"], ["Being burned by potentially flammable toys", "flammable", "burn"]], "Danger of: breaking a toy through exploration and ingesting small pieces; ingesting lead from lead-based paint; being burned by potentially flammable toys.");
+  mc("Imitation and make-believe play begins by ____.", "The end of the second year", ["6 months", "The first birthday", "The sixth year"], "Imitation and make-believe play begins by the end of the second year.");
+  mc("Which are suggested toys for toddlers?", "Play furniture, dishes, cooking utensils, telephone, puzzles with a few large pieces", ["Chess and dart games", "Archery and science toys", "Model kits and magic sets"], "Toddlers: play furniture, dishes, cooking utensils, telephone; puzzles with a few large pieces; pedal-propelled toys; clay, sandbox toys, crayons, finger paints; pounding toys, blocks, push-pull toys.");
+  mc("In preschool play, the child expresses emotions more through ____.", "Action than through words", ["Words than through action", "Silence", "Reading"], "Through play, the child deals with reality, learns control of feelings, and expresses emotions more through action than through words.");
+  mc("Why do school-age children like games with rules?", "Because of increased mental abilities", ["Because of increased motor ability", "Because they cannot play alone", "Because they fear competition"], "Likes games with rules because of increased mental abilities; likes athletic competition because of increased motor ability.");
+  mc("In the beginning of school years, boys and girls play together but gradually separate into ____.", "Sex-oriented types of activities", ["Solitary play", "Parallel play", "Unoccupied play"], "Boys and girls play together but gradually separate into sex-oriented types of activities.");
+  mc("Which is a suggested play activity for 6 to 9 year olds?", "Physically active games such as hopscotch, jump rope, climbing trees and bicycle riding", ["Archery, dart games and chess", "Pounding toys and push-pull toys", "Rocking horse and straddle toys"], "Suggested play for 6 to 9: housekeeping toys, number games, physically active games (hopscotch, jump rope, climbing trees, bicycle riding), collections and hobbies.");
+  mc("Which is a suggested play activity for 9 to 12 year olds?", "Handicrafts, model kits, pottery clay, archery, dart games, chess, jigsaw puzzles, science toys, magic sets", ["Push-pull toys and pounding toys", "Dress-up clothes and puppets", "Rocking horse and finger paints"], "Suggested play for 9 to 12: handicrafts, model kits, pottery clay, hobbies, collections; archery, dart games, chess, jigsaw puzzles; science toys, magic sets.");
+
+  /* ===================== PAIN ASSESSMENT ===================== */
+  topic = "Pain Assessment";
+  pg = "p.11";
+  mc("Which age group shows generalized restlessness, guards or rubs the painful area, and tries to delay painful situations?", "Toddler", ["Preschooler", "School-age", "Adolescent"], "Toddler: generalized restlessness; guards or rubs painful area; loud crying; tries to delay painful situations.");
+  idn("What words does a toddler use to describe pain? (Give any one)", ["booboo", "boo boo", "ouch"], "Toddlers use words to describe pain (e.g., BooBoo, ouch).", "BooBoo, ouch");
+  mc("A preschooler may believe that pain is ____.", "Punishment for bad behavior", ["A reward", "A normal part of play", "Caused only by germs"], "Preschooler: may believe pain is punishment for bad behavior.");
+  mc("Which is a pain response of a preschooler?", "May hit or kick the caregiver", ["Stiff body posture only", "Perceives pain at physical, emotional and mental levels", "Describes intensity of pain exactly"], "Preschooler: crying, can describe pain location; regression; may believe pain is punishment; may deny pain; may hit or kick caregiver.");
+  mc("Which age group is afraid of bodily harm and may delay or bargain to avoid painful situations?", "School-age", ["Toddler", "Preschooler", "Infant"], "School-age: stiff body posture; withdrawal; able to describe pain; afraid of bodily harm; may delay or bargain.");
+  mc("Which age group recognizes that death exists, as shown in pain assessment?", "School-age", ["Toddler", "Preschooler", "None of the age groups"], "School age: recognizes that death exists.");
+  mc("Which age group shows increased muscle tension, decreased activity and withdrawal when in pain?", "Adolescent", ["Toddler", "Preschooler", "School-age"], "Adolescent: increased muscle tension; decreased activity; withdrawal; describes location and intensity of pain.");
+  mc("An adolescent perceives pain at which levels?", "Physical, emotional and mental", ["Physical only", "Not at all", "Only when told by parents"], "Adolescent perceives pain at physical, emotional, and mental levels.");
+
+  return Q;
+})();
