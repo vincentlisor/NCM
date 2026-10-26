@@ -18,9 +18,10 @@
   };
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
-  const TYPE_LABEL = { mc: "Multiple choice", id: "Identification", enum: "Enumeration" };
+  const TYPE_LABEL = { mc: "Multiple choice", sit: "Situational", id: "Identification", enum: "Enumeration" };
   const TOPIC_ORDER = ["Toddler", "Preschool", "School-Age", "Adolescent", "Play", "Pain Assessment"];
   const LETTERS = ["A", "B", "C", "D", "E", "F"];
+  const isMC = (q) => q.type === "mc" || q.type === "sit";
 
   /* ---------- text matching ---------- */
   function norm(s) {
@@ -80,7 +81,7 @@
   /* ---------- state ---------- */
   const state = {
     selTopics: new Set(),
-    selTypes: new Set(["mc", "id", "enum"]),
+    selTypes: new Set(["mc", "sit", "id", "enum"]),
     queue: [],
     i: 0,
     score: 0,
@@ -218,13 +219,13 @@
     fb.className = "feedback";
     fb.innerHTML = "";
     $("#btnNext").hidden = true;
-    $("#btnCheck").hidden = q.type === "mc";
-    $("#btnSkip").hidden = q.type === "mc";
+    $("#btnCheck").hidden = isMC(q);
+    $("#btnSkip").hidden = isMC(q);
     $("#btnCheck").disabled = false;
     $("#btnSkip").disabled = false;
 
-    if (q.type === "mc") {
-      $("#qHint").textContent = "Choose the best answer.";
+    if (isMC(q)) {
+      $("#qHint").textContent = q.type === "sit" ? "Read the situation, then choose the best answer." : "Choose the best answer.";
       const opts = shuffle([{ t: q.a, ok: true }].concat(q.w.map((t) => ({ t, ok: false }))));
       state.cur.opts = opts;
       opts.forEach((o, idx) => {
@@ -390,7 +391,7 @@
     const tag = (document.activeElement && document.activeElement.tagName) || "";
     if (e.key === "Enter") {
       if (state.answered) { e.preventDefault(); $("#btnNext").click(); }
-      else if (q.type !== "mc") {
+      else if (!isMC(q)) {
         if (tag === "INPUT" && q.type === "enum") {
           const inputs = [...document.querySelectorAll("#answerArea .enum-input")];
           const idx = inputs.indexOf(document.activeElement);
@@ -399,7 +400,7 @@
         e.preventDefault();
         $("#btnCheck").click();
       }
-    } else if (q.type === "mc" && !state.answered && tag !== "INPUT") {
+    } else if (isMC(q) && !state.answered && tag !== "INPUT") {
       const n = parseInt(e.key, 10);
       const l = LETTERS.indexOf(e.key.toUpperCase());
       const idx = n >= 1 && n <= state.cur.opts.length ? n - 1 : l;
